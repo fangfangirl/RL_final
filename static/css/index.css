@@ -273,8 +273,6 @@ body {
   line-height: 1.45;
 }
 
-.experiment-grid,
-.method-grid,
 .analysis-grid,
 .card-grid,
 .takeaway-grid {
@@ -282,11 +280,6 @@ body {
   gap: 1rem;
 }
 
-.experiment-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.method-grid,
 .analysis-grid,
 .takeaway-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -296,8 +289,6 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.experiment-card,
-.method-card,
 .analysis-card,
 .info-card,
 .takeaway-card {
@@ -308,8 +299,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.experiment-card h3,
-.method-card h3,
 .analysis-card h3,
 .info-card h3,
 .takeaway-card h3 {
@@ -319,8 +308,6 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.experiment-card p,
-.method-card p,
 .analysis-card p,
 .info-card p,
 .takeaway-card p {
@@ -341,71 +328,198 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.experiment-card pre {
-  margin-top: 1rem;
-  padding: 1rem !important;
-  font-size: 0.78rem !important;
-}
-
-.method-tag {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  padding: 0.25rem 0.65rem;
-  color: var(--primary-hover);
-  background: #eaf5f2;
+.workflow-diagram {
+  margin: 0 auto 1.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8fbfa 0%, #eef4f3 100%);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  font-size: 0.78rem;
-  font-weight: 700;
+  box-shadow: var(--shadow-md);
 }
 
-.pipeline {
+.workflow-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  align-items: stretch;
+  gap: 0.65rem;
 }
 
-.pipeline-step {
+.workflow-row-four {
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+}
+
+.workflow-row-three {
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+}
+
+.workflow-row-five {
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+}
+
+.workflow-node,
+.workflow-mini {
   position: relative;
-  min-height: 190px;
-  padding: 1.25rem;
+  min-width: 0;
   background: var(--background-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
 }
 
-.pipeline-step span {
+.workflow-node {
+  padding: 1rem;
+  min-height: 180px;
+}
+
+.workflow-mini {
+  padding: 0.95rem;
+  min-height: 145px;
+}
+
+.workflow-node::before,
+.workflow-mini::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  background: var(--primary-color);
+}
+
+.workflow-node.blue {
+  --workflow-accent: #2563eb;
+}
+
+.workflow-node.purple {
+  --workflow-accent: #6d28d9;
+}
+
+.workflow-node.green {
+  --workflow-accent: #1f7a33;
+}
+
+.workflow-node.orange {
+  --workflow-accent: #f05a28;
+}
+
+.workflow-node::before,
+.workflow-mini::before {
+  background: var(--workflow-accent, var(--primary-color));
+}
+
+.workflow-node > i,
+.workflow-mini > i {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-bottom: 1rem;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.75rem;
   border-radius: 50%;
   color: white;
-  background: var(--accent-color);
+  background: var(--workflow-accent, var(--primary-color));
+}
+
+.workflow-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  color: white;
+  background: var(--workflow-accent, var(--primary-color));
+  font-size: 0.9rem;
   font-weight: 800;
 }
 
-.pipeline-step h3 {
-  margin-bottom: 0.6rem;
+.workflow-node h3,
+.workflow-mini h4,
+.workflow-band-title h3 {
   color: var(--text-primary);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.workflow-node h3 {
+  margin-bottom: 0.55rem;
   font-size: 1rem;
-  font-weight: 700;
 }
 
-.pipeline-step p {
+.workflow-mini h4 {
+  margin-bottom: 0.45rem;
+  font-size: 0.94rem;
+}
+
+.workflow-node p,
+.workflow-mini p,
+.workflow-loop {
   color: var(--text-secondary);
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
-.section-divider {
-  width: 100%;
-  height: 2px;
-  margin: 1.75rem 0;
-  background: linear-gradient(90deg, transparent, #a8bab8, var(--primary-color), #a8bab8, transparent);
+.workflow-arrow,
+.workflow-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.workflow-arrow {
+  font-size: 1.4rem;
+}
+
+.workflow-down {
+  margin: 0.5rem 0;
+  font-size: 1.45rem;
+}
+
+.workflow-band {
+  --workflow-accent: var(--primary-color);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid color-mix(in srgb, var(--workflow-accent) 55%, white);
+  border-radius: var(--border-radius);
+}
+
+.workflow-band.teal {
+  --workflow-accent: #0f766e;
+}
+
+.workflow-band.blue {
+  --workflow-accent: #2563eb;
+}
+
+.workflow-band .workflow-mini::before {
+  background: var(--workflow-accent);
+}
+
+.workflow-band .workflow-mini > i {
+  background: var(--workflow-accent);
+}
+
+.workflow-band-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.workflow-band-title .workflow-number {
+  background: var(--workflow-accent);
+}
+
+.workflow-loop {
+  margin-top: 0.9rem;
+  padding: 0.65rem 1rem;
+  background: #f3f7ff;
+  border: 1px solid #cddcff;
+  border-radius: var(--border-radius);
+  color: #24417a;
+  text-align: center;
+  font-weight: 700;
 }
 
 .detail-block {
@@ -903,13 +1017,26 @@ code {
 /* Mobile Responsive Improvements */
 @media screen and (max-width: 768px) {
   .metric-grid,
-  .pipeline,
   .card-grid.three {
     grid-template-columns: 1fr;
   }
 
-  .experiment-grid,
-  .method-grid,
+  .workflow-row-four,
+  .workflow-row-three,
+  .workflow-row-five {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-arrow {
+    transform: rotate(90deg);
+    min-height: 1.25rem;
+  }
+
+  .workflow-node,
+  .workflow-mini {
+    min-height: auto;
+  }
+
   .analysis-grid,
   .takeaway-grid,
   .detail-grid,
@@ -925,10 +1052,6 @@ code {
 
   .metric-card {
     min-height: 112px;
-  }
-
-  .pipeline-step {
-    min-height: auto;
   }
 
   .setup-list div {
