@@ -1,520 +1,1090 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+
+  <meta name="title" content="MMCR - Sequential Layer-wise Model Merging via Reinforcement Learning">
+  <meta name="description"
+    content="MMCR formulates model merging as a sequential layer-wise reinforcement learning problem and learns adaptive task-vector coefficients with GRPO and RLOO.">
+  <meta name="keywords"
+    content="MMCR, reinforcement learning, model merging, task vectors, TIES, GRPO, RLOO, Vision Transformer">
+  <meta name="author" content="MMCR Project">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
+
   <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:site_name" content="Reinforcement Learning Seminar">
+  <meta property="og:title" content="MMCR - Sequential Layer-wise Model Merging via Reinforcement Learning">
+  <meta property="og:description"
+    content="An RL final project page for sequential layer-wise task-vector model merging.">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="static/images/flower.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="og:image:alt" content="MMCR project preview">
+  <meta property="article:published_time" content="2026-06-05T00:00:00.000Z">
   <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta property="article:tag" content="model merging">
+  <meta property="article:tag" content="reinforcement learning">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta name="twitter:title" content="MMCR - Sequential Layer-wise Model Merging">
+  <meta name="twitter:description"
+    content="RL-based layer-wise model merging with TIES preprocessing and GRPO/RLOO policy optimization.">
+  <meta name="twitter:image" content="static/images/flower.jpg">
+  <meta name="twitter:image:alt" content="MMCR project preview">
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="citation_title" content="MMCR: Sequential Layer-wise Model Merging via Reinforcement Learning">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="Reinforcement Learning Seminar">
+  <meta name="citation_pdf_url" content="static/pdfs/RL_final.pdf">
+
+  <meta name="theme-color" content="#2f7d7e">
+  <meta name="msapplication-TileColor" content="#2f7d7e">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
+  <title>MMCR | Sequential Layer-wise Model Merging</title>
 
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
+  <link rel="icon" type="image/jpeg" href="static/images/flower.jpg">
+  <link rel="apple-touch-icon" href="static/images/flower.jpg">
+
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
   <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
-  
-  <!-- Fonts - Optimized loading -->
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
+    "headline": "MMCR: Sequential Layer-wise Model Merging via Reinforcement Learning",
+    "description": "MMCR formulates layer-wise task-vector model merging as a reinforcement learning problem and optimizes adaptive merging coefficients with TIES preprocessing and GRPO with return leave-one-out advantages.",
+    "datePublished": "2026-06-05",
     "publisher": {
       "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
+      "name": "Reinforcement Learning Seminar"
     },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
+    "url": "",
+    "image": "static/images/flower.jpg",
+    "keywords": ["MMCR", "reinforcement learning", "model merging", "task vectors", "TIES", "GRPO", "RLOO"],
+    "abstract": "MMCR studies whether an RL policy can learn adaptive layer-wise task-vector merging strategies that preserve the abilities of multiple source models.",
+    "isAccessibleForFree": true
   }
   </script>
 </head>
+
 <body>
-
-
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
   <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="Jump to MMCR sections">
+      <i class="fas fa-route"></i>
+      Sections
       <i class="fas fa-chevron-down dropdown-arrow"></i>
     </button>
     <div class="more-works-dropdown" id="moreWorksDropdown">
       <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
+        <h4>MMCR Project Map</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()" aria-label="Close sections menu">
           <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+        <a href="#overview" class="work-item">
           <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
+            <h5>Overview</h5>
+            <p>Problem motivation and core idea.</p>
+            <span class="work-venue">Project</span>
           </div>
-          <i class="fas fa-external-link-alt"></i>
+          <i class="fas fa-arrow-down"></i>
         </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
+        <a href="#method" class="work-item">
           <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
+            <h5>Method</h5>
+            <p>TIES, MDP design, reward, and GRPO/RLOO.</p>
+            <span class="work-venue">Approach</span>
           </div>
-          <i class="fas fa-external-link-alt"></i>
+          <i class="fas fa-arrow-down"></i>
         </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
+        <a href="#experiments" class="work-item">
           <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
+            <h5>Experiments</h5>
+            <p>Datasets, metrics, and hardware.</p>
+            <span class="work-venue">Setup</span>
           </div>
-          <i class="fas fa-external-link-alt"></i>
+          <i class="fas fa-arrow-down"></i>
+        </a>
+        <a href="#results" class="work-item">
+          <div class="work-info">
+            <h5>Results</h5>
+            <p>Main accuracy and runtime comparisons.</p>
+            <span class="work-venue">Findings</span>
+          </div>
+          <i class="fas fa-arrow-down"></i>
+        </a>
+        <a href="#conclusions" class="work-item">
+          <div class="work-info">
+            <h5>Conclusions</h5>
+            <p>Key findings, limitations, and future work.</p>
+            <span class="work-venue">Discussion</span>
+          </div>
+          <i class="fas fa-arrow-down"></i>
         </a>
       </div>
     </div>
   </div>
 
   <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
-
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
+    <section class="hero publication-header">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <p class="project-kicker">Reinforcement Learning Final Project 2026</p>
+              <h1 class="title is-1 publication-title">MMCR</h1>
+              <h2 class="subtitle is-4">Sequential Layer-wise Model Merging via Reinforcement Learning</h2>
+              <div class="publication-authors is-size-5" aria-label="Project authors">
+                <span class="author-block"><a href="#">Chou Fang Chang</a>,</span>
+                <span class="author-block"><a href="#">Zi-Yong Lai</a>,</span>
+                <span class="author-block"><a href="#">Chih-Pao Lin</a></span>
+              </div>
+              <div class="publication-affiliation is-size-5">
+                <span>National Yang Ming Chiao Tung University</span>
+              </div>
+              <p class="hero-summary">
+                We turn model merging into a sequential decision problem: an RL policy visits each layer, observes
+                task-vector geometry and coefficient history, then chooses how much each source model should contribute
+                to the merged model.
+              </p>
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="#results" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-chart-bar"></i></span>
+                    <span>Results</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#method" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-project-diagram"></i></span>
+                    <span>Method</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/fangfangirl/RL_final" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark" aria-label="Code repository">
+                    <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
                   </a>
                 </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+                  <a href="static/pdfs/RL_final.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Report</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <section class="section hero is-light" id="overview">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths has-text-centered">
+            <h2 class="title is-3">What Are We Doing?</h2>
+            <div class="content has-text-justified">
+              <p>
+                Model merging combines several task-specific models into one unified model without retraining the full
+                network. It is useful for multi-task learning and efficient deployment, but it becomes difficult when
+                task vectors point in conflicting directions.
+              </p>
+              <p>
+                MMCR studies whether reinforcement learning can learn better layer-wise merging decisions than fixed
+                rules. Instead of applying one global coefficient to the whole model, the policy chooses an adaptive
+                coefficient vector for each mergeable layer.
+              </p>
+            </div>
+          </div>
+        </div>
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+        <div class="metric-grid">
+          <div class="metric-card">
+            <span class="metric-value">86.41%</span>
+            <span class="metric-label">MMCR average accuracy</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">+4.78</span>
+            <span class="metric-label">points over TIES baseline</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">~1.7x</span>
+            <span class="metric-label">final two-GPU wall-clock speedup</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
+    <section class="section" id="challenge">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Why This Is Hard</h2>
+        <div class="card-grid three">
+          <div class="info-card">
+            <span class="card-icon"><i class="fas fa-layer-group"></i></span>
+            <h3>Layer-wise Conflict</h3>
+            <p>Different tasks may update the same layer with different magnitudes or directions, so a fixed merging
+              rule can be too coarse.</p>
+          </div>
+          <div class="info-card">
+            <span class="card-icon"><i class="fas fa-route"></i></span>
+            <h3>Sequential Dependency</h3>
+            <p>Early layer decisions affect the partially merged model and can change what later layer decisions should
+              look like.</p>
+          </div>
+          <div class="info-card">
+            <span class="card-icon"><i class="fas fa-balance-scale"></i></span>
+            <h3>Credit Assignment</h3>
+            <p>The merged model is usually evaluated after multiple layers, making it hard to know which coefficient
+              choices helped most.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small is-light" id="method">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3">MMCR Pipeline</h2>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>1</span>
+              <h3>Task Vectors</h3>
+              <p>Compute each source update relative to the shared pretrained backbone.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>2</span>
+              <h3>TIES Preprocessing</h3>
+              <p>Remove weak updates and reduce sign conflicts before RL search.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>3</span>
+              <h3>Layer-wise MDP</h3>
+              <p>Visit layers sequentially and write one coefficient vector per layer.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>4</span>
+              <h3>GRPO + RLOO</h3>
+              <p>Compare trajectory groups with leave-one-out advantages.</p>
+            </div>
+          </div>
+
+          <div class="section-divider" role="presentation"></div>
+
+          <div class="method-grid">
+            <div class="method-card">
+              <span class="method-tag">State</span>
+              <h3>What the policy observes</h3>
+              <p>The state is built from layer progress, current-layer task-vector geometry, the full coefficient table,
+                and a mask indicating which layers have already been updated.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Action</span>
+              <h3>What the policy controls</h3>
+              <p>At layer t, the policy samples a raw Gaussian action and transforms it into a non-negative coefficient
+                vector for the K source task vectors.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Reward</span>
+              <h3>What the policy optimizes</h3>
+              <p>The reward is based on negative prediction entropy over small task-specific reward subsets, with a
+                standard-deviation penalty to discourage task imbalance.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Selection</span>
+              <h3>How the final model is chosen</h3>
+              <p>The best coefficient table observed during training is used to construct the final merged model for
+                full evaluation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="details">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Project Details</h2>
+        <div class="detail-block">
+          <h3>Problem formulation</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Given K fine-tuned source models and one shared pretrained model, MMCR represents each source model as a
+            task vector. For layer l and source model k, the task vector is the parameter difference between the
+            fine-tuned model and the pretrained backbone. The merged layer is constructed by adding a weighted sum of
+            task vectors back to the pretrained layer.
+          </p>
+          <div class="equation-stack" aria-label="Task-vector model merging equations">
+            <div class="equation">
+              <math display="block">
+                <mrow>
+                  <msubsup>
+                    <mi>&Delta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>k</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                  <mo>=</mo>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>k</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                  <mo>-</mo>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mn>0</mn>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                </mrow>
+              </math>
+            </div>
+            <div class="equation">
+              <math display="block">
+                <mrow>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>m</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                  <mo>=</mo>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mn>0</mn>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                  <mo>+</mo>
+                  <munderover>
+                    <mo>&sum;</mo>
+                    <mrow>
+                      <mi>k</mi>
+                      <mo>=</mo>
+                      <mn>1</mn>
+                    </mrow>
+                    <mi>K</mi>
+                  </munderover>
+                  <msub>
+                    <mi>&lambda;</mi>
+                    <mrow>
+                      <mi>l</mi>
+                      <mo>,</mo>
+                      <mi>k</mi>
+                    </mrow>
+                  </msub>
+                  <msubsup>
+                    <mi>&Delta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>k</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                </mrow>
+              </math>
+            </div>
+          </div>
+          <div class="symbol-list">
+            <div>
+              <span class="symbol-formula">
+                <math>
+                  <msubsup>
+                    <mi>&Delta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>k</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                </math>
+              </span>
+              <span>Task vector of source model k at layer l.</span>
+            </div>
+            <div>
+              <span class="symbol-formula">
+                <math>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mn>0</mn>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                </math>
+              </span>
+              <span>Pretrained backbone parameter at layer l.</span>
+            </div>
+            <div>
+              <span class="symbol-formula">
+                <math>
+                  <msubsup>
+                    <mi>&theta;</mi>
+                    <mi>l</mi>
+                    <mrow>
+                      <mo>(</mo>
+                      <mi>k</mi>
+                      <mo>)</mo>
+                    </mrow>
+                  </msubsup>
+                </math>
+              </span>
+              <span>Fine-tuned source model k parameter at layer l.</span>
+            </div>
+            <div>
+              <span class="symbol-formula">
+                <math>
+                  <msub>
+                    <mi>&lambda;</mi>
+                    <mrow>
+                      <mi>l</mi>
+                      <mo>,</mo>
+                      <mi>k</mi>
+                    </mrow>
+                  </msub>
+                </math>
+              </span>
+              <span>Learned merging coefficient for source model k at layer l.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <h3>Sequential layer-wise MDP</h3>
+          <p>
+            One episode corresponds to constructing one complete merged model. At each step, the environment focuses on
+            one mergeable layer, writes the policy-selected coefficient vector into that layer, updates the coefficient
+            table, and advances to the next layer. This turns model merging from a one-shot coefficient search into a
+            trajectory-level optimization problem.
+          </p>
+          <div class="detail-grid">
+            <div>
+              <strong>State dimension</strong>
+              <span>1 + 2K + LK + L, using progress, geometry, coefficient history, and filled mask.</span>
+            </div>
+            <div>
+              <strong>Action space</strong>
+              <span>K-dimensional coefficient vector for the current layer.</span>
+            </div>
+            <div>
+              <strong>Transition</strong>
+              <span>Deterministic layer update; all other layers remain unchanged at that step.</span>
+            </div>
+            <div>
+              <strong>Objective</strong>
+              <span>Maximize cumulative reward over the full layer-wise merging trajectory.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <h3>Policy optimization</h3>
+          <p>
+            MMCR uses a stochastic Gaussian policy and optimizes it with a GRPO-style objective. Each update samples a
+            group of complete merging trajectories. Instead of learning a separate value function, the method computes a
+            return leave-one-out baseline from the other trajectories in the same group.
+          </p>
+          <div class="equation-stack" aria-label="GRPO leave-one-out advantage equations">
+            <div class="equation">
+              <math display="block">
+                <mrow>
+                  <msub>
+                    <mi>b</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mn>1</mn>
+                    <mrow>
+                      <mi>G</mi>
+                      <mo>-</mo>
+                      <mn>1</mn>
+                    </mrow>
+                  </mfrac>
+                  <munder>
+                    <mo>&sum;</mo>
+                    <mrow>
+                      <mi>j</mi>
+                      <mo>&ne;</mo>
+                      <mi>i</mi>
+                    </mrow>
+                  </munder>
+                  <msub>
+                    <mi>R</mi>
+                    <mi>j</mi>
+                  </msub>
+                </mrow>
+              </math>
+            </div>
+            <div class="equation">
+              <math display="block">
+                <mrow>
+                  <msub>
+                    <mi>A</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mrow>
+                      <msub>
+                        <mi>R</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <mo>-</mo>
+                      <msub>
+                        <mi>b</mi>
+                        <mi>i</mi>
+                      </msub>
+                    </mrow>
+                    <mrow>
+                      <mi>Std</mi>
+                      <mo>(</mo>
+                      <msub>
+                        <mi>R</mi>
+                        <mn>1</mn>
+                      </msub>
+                      <mo>,</mo>
+                      <mo>...</mo>
+                      <mo>,</mo>
+                      <msub>
+                        <mi>R</mi>
+                        <mi>G</mi>
+                      </msub>
+                      <mo>)</mo>
+                      <mo>+</mo>
+                      <mi>&epsilon;</mi>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </math>
+            </div>
+          </div>
+          <div class="symbol-list">
+            <div>
+              <span class="symbol-formula"><math>
+                  <mi>G</mi>
+                </math></span>
+              <span>Number of trajectories sampled in one policy update group.</span>
+            </div>
+            <div>
+              <span class="symbol-formula"><math>
+                  <msub>
+                    <mi>R</mi>
+                    <mi>i</mi>
+                  </msub>
+                </math></span>
+              <span>Return of trajectory i after constructing and evaluating a merged model.</span>
+            </div>
+            <div>
+              <span class="symbol-formula"><math>
+                  <msub>
+                    <mi>b</mi>
+                    <mi>i</mi>
+                  </msub>
+                </math></span>
+              <span>Leave-one-out baseline computed from the other trajectories.</span>
+            </div>
+            <div>
+              <span class="symbol-formula"><math>
+                  <msub>
+                    <mi>A</mi>
+                    <mi>i</mi>
+                  </msub>
+                </math></span>
+              <span>Normalized advantage used to update the policy.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiments">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Experimental Setup</h2>
+        <div class="setup-list">
+          <div>
+            <strong>Benchmark Tasks</strong>
+            <span>SUN397, Stanford Cars, RESISC45, EuroSAT, SVHN, GTSRB, MNIST, and DTD.</span>
+          </div>
+          <div>
+            <strong>Model Setting</strong>
+            <span>Vision Transformer model merging with task-specific fine-tuned source models and a shared pretrained
+              backbone.</span>
+          </div>
+          <div>
+            <strong>Optimization Budget</strong>
+            <span>MMCR uses 300 iterations, group size 8, positive coefficient transformation, and intermediate entropy
+              reward.</span>
+          </div>
+          <div>
+            <strong>Reward Budget</strong>
+            <span>Policy optimization uses reward subsets of 64 samples per task; final accuracy is measured on the full
+              evaluation protocol.</span>
+          </div>
+          <div>
+            <strong>Hardware</strong>
+            <span>Experiments run on a workstation with two NVIDIA RTX 3090 GPUs.</span>
+          </div>
+        </div>
+        <div class="experiment-note">
+          <p>
+            The compared model merging baselines include Task Arithmetic, TIES, DARE-TA, NAN-TA, and AdaMerging. For
+            methods that require data during coefficient optimization, the reward or validation sample budget is aligned
+            with MMCR whenever possible, so a method does not gain advantage simply by using more optimization samples.
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
+    <section class="hero is-small is-light" id="results">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3">Main Results</h2>
+          <p class="section-note">
+            MMCR achieves the best average accuracy among the compared merging methods and remains competitive against a
+            longer-running AdaMerging baseline.
+          </p>
+          <div class="table-container">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>SUN397</th>
+                  <th>Cars</th>
+                  <th>RESISC45</th>
+                  <th>EuroSAT</th>
+                  <th>SVHN</th>
+                  <th>GTSRB</th>
+                  <th>MNIST</th>
+                  <th>DTD</th>
+                  <th>Avg.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TIES</td>
+                  <td>76.11</td>
+                  <td>83.93</td>
+                  <td>83.65</td>
+                  <td>80.66</td>
+                  <td>84.70</td>
+                  <td>89.14</td>
+                  <td>89.29</td>
+                  <td>65.53</td>
+                  <td>81.63</td>
+                </tr>
+                <tr>
+                  <td>AdaMerging-300 epochs</td>
+                  <td>78.20</td>
+                  <td>85.56</td>
+                  <td>87.67</td>
+                  <td>83.50</td>
+                  <td>68.45</td>
+                  <td>86.81</td>
+                  <td>61.74</td>
+                  <td>70.96</td>
+                  <td>77.86</td>
+                </tr>
+                <tr>
+                  <td>AdaMerging-500 epochs</td>
+                  <td>78.71</td>
+                  <td>87.58</td>
+                  <td>90.21</td>
+                  <td>88.14</td>
+                  <td>88.13</td>
+                  <td>89.37</td>
+                  <td>91.45</td>
+                  <td>72.87</td>
+                  <td>85.81</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>MMCR (ours)</td>
+                  <td>77.57</td>
+                  <td>89.11</td>
+                  <td>89.06</td>
+                  <td>85.72</td>
+                  <td>90.65</td>
+                  <td>89.96</td>
+                  <td>92.54</td>
+                  <td>76.64</td>
+                  <td>86.41</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+          <div class="takeaway-grid">
+            <div class="takeaway-card">
+              <h3>Against TIES</h3>
+              <p>MMCR improves average accuracy from 81.63% to 86.41%, showing that learned layer-wise coefficients add
+                value beyond preprocessing alone.</p>
+            </div>
+            <div class="takeaway-card">
+              <h3>Against AdaMerging</h3>
+              <p>MMCR slightly outperforms AdaMerging-500 epochs while using a trajectory-based optimization structure
+                that parallelizes naturally.</p>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Comparison with model merging Baseline</h3>
+          <div class="table-container">
+            <table class="results-table compact">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Avg. Accuracy</th>
+                  <th>Role in the experiment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pretrained model</td>
+                  <td>65.12</td>
+                  <td>Lower reference before task-specific fine-tuning.</td>
+                </tr>
+                <tr>
+                  <td>Fine-tuned source models</td>
+                  <td>93.06</td>
+                  <td>Upper reference before compression into one merged model.</td>
+                </tr>
+                <tr>
+                  <td>Task Arithmetic (0.3)</td>
+                  <td>78.67</td>
+                  <td>Simple linear task-vector merging baseline.</td>
+                </tr>
+                <tr>
+                  <td>DARE-TA</td>
+                  <td>78.29</td>
+                  <td>Task arithmetic with dropped and rescaled updates.</td>
+                </tr>
+                <tr>
+                  <td>NAN-TA</td>
+                  <td>73.37</td>
+                  <td>Training-free coefficient estimation baseline.</td>
+                </tr>
+                <tr>
+                  <td>TIES</td>
+                  <td>81.63</td>
+                  <td>Strong data-free task-vector conflict reduction baseline.</td>
+                </tr>
+                <tr>
+                  <td>AdaMerging-500 epochs</td>
+                  <td>85.81</td>
+                  <td>Strong data-based coefficient optimization baseline.</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>MMCR (ours)</td>
+                  <td>86.41</td>
+                  <td>Sequential RL-based layer-wise merging with TIES preprocessing and GRPO + RLOO.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
+    </section>
+
+    <section class="section" id="runtime">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Runtime and Parallelization</h2>
+        <div class="table-container">
+          <table class="results-table compact">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>GPUs Used</th>
+                <th>Runtime</th>
+                <th>Time (min)</th>
+                <th>Avg. Acc.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AdaMerging-300 epochs</td>
+                <td>1 GPU</td>
+                <td>3h 05m 00s</td>
+                <td>185.00</td>
+                <td>77.86</td>
+              </tr>
+              <tr>
+                <td>AdaMerging-500 epochs</td>
+                <td>1 GPU</td>
+                <td>5h 56m 27s</td>
+                <td>356.45</td>
+                <td>85.81</td>
+              </tr>
+              <tr>
+                <td>MMCR (ours)</td>
+                <td>1 GPU</td>
+                <td>4h 25m 09s</td>
+                <td>265.15</td>
+                <td>86.41</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>MMCR (ours)</td>
+                <td>2 GPUs</td>
+                <td>2h 35m 58s</td>
+                <td>155.97</td>
+                <td>86.41</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="section-note">
+          The final two-GPU MMCR run gives about a 1.7x wall-clock speedup. The gain is useful, while synchronization
+          and policy-update overhead prevent perfect scaling.
+        </p>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    </section>
 
+    <section class="hero is-small is-light" id="ablations">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3">Ablation Studies</h2>
+          <div class="analysis-grid">
+            <div class="analysis-card">
+              <h3>TIES Preprocessing</h3>
+              <p>Using TIES improves MMCR from 83.69% to 86.41% average accuracy. The largest gains appear on MNIST and
+                EuroSAT.</p>
+            </div>
+            <div class="analysis-card">
+              <h3>RL Optimizer</h3>
+              <p>GRPO + RLOO reaches 86.41%, while PPO reaches 78.19%. Group-relative advantages are more stable for
+                this sparse, expensive reward setting.</p>
+            </div>
+            <div class="analysis-card">
+              <h3>Reward Frequency</h3>
+              <p>Terminal-only reward is efficient at 86.23%, while interval 6 reaches 86.57% with higher runtime.
+                Reward density improves accuracy but costs more.</p>
+            </div>
+            <div class="analysis-card">
+              <h3>Policy Transferability</h3>
+              <p>Transfer works well for related two-task groups, but becomes weaker for three-task or unrelated
+                transfers, suggesting task similarity matters.</p>
+            </div>
+          </div>
 
+          <h3 class="subsection-title">TIES preprocessing</h3>
+          <div class="table-container">
+            <table class="results-table compact">
+              <thead>
+                <tr>
+                  <th>Setting</th>
+                  <th>Avg. Accuracy</th>
+                  <th>Conclusion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MMCR without TIES</td>
+                  <td>83.69</td>
+                  <td>Raw task vectors contain noisy or conflicting updates.</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>MMCR with TIES</td>
+                  <td>86.41</td>
+                  <td>TIES improves the search space and gives a +2.72 point gain.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
+          <h3 class="subsection-title">Policy optimization algorithms</h3>
+          <div class="table-container">
+            <table class="results-table compact">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Avg. Accuracy</th>
+                  <th>Time (min)</th>
+                  <th>Interpretation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PPO</td>
+                  <td>78.19</td>
+                  <td>24.50</td>
+                  <td>Fast, but unstable in this sparse reward setting.</td>
+                </tr>
+                <tr>
+                  <td>Dr. GRPO</td>
+                  <td>82.73</td>
+                  <td>148.47</td>
+                  <td>Removing group standard-deviation normalization hurts performance.</td>
+                </tr>
+                <tr>
+                  <td>DAPO-lite</td>
+                  <td>86.05</td>
+                  <td>393.93</td>
+                  <td>Competitive but too expensive due to resampling overhead.</td>
+                </tr>
+                <tr>
+                  <td>GSPO-like</td>
+                  <td>86.32</td>
+                  <td>151.18</td>
+                  <td>Very close to GRPO, using trajectory-level policy ratios.</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>MMCR</td>
+                  <td>86.41</td>
+                  <td>155.97</td>
+                  <td>Best accuracy and selected as the final MMCR optimizer.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
+          <h3 class="subsection-title">Reward evaluation frequency</h3>
+          <div class="table-container">
+            <table class="results-table compact">
+              <thead>
+                <tr>
+                  <th>Reward Setting</th>
+                  <th>Avg. Accuracy</th>
+                  <th>Time (min)</th>
+                  <th>Conclusion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Terminal-only</td>
+                  <td>86.23</td>
+                  <td>50.40</td>
+                  <td>Most efficient; final reward is already informative.</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Interval 13</td>
+                  <td>86.41</td>
+                  <td>155.97</td>
+                  <td>Final setting; balances reward density and runtime.</td>
+                </tr>
+                <tr>
+                  <td>Interval 6</td>
+                  <td>86.57</td>
+                  <td>247.37</td>
+                  <td>Slightly higher accuracy but more expensive.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conclusions">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Conclusions</h2>
+        <div class="conclusion-grid">
+          <div class="conclusion-card">
+            <h3>What worked</h3>
+            <p>Formulating model merging as a sequential layer-wise RL problem lets the policy adapt coefficients across
+              layers instead of relying on a single fixed merging rule.</p>
+          </div>
+          <div class="conclusion-card">
+            <h3>Best final method</h3>
+            <p>The strongest configuration combines TIES-preprocessed task vectors, positive coefficient transformation,
+              entropy-based reward, and GRPO with return leave-one-out advantages.</p>
+          </div>
+          <div class="conclusion-card">
+            <h3>Main result</h3>
+            <p>MMCR reaches 86.41% average accuracy across eight vision tasks, improving over TIES and slightly
+              outperforming the longer-running AdaMerging-500 epochs baseline.</p>
+          </div>
+          <div class="conclusion-card">
+            <h3>Main limitation</h3>
+            <p>Reward evaluation is still expensive because each trajectory requires repeatedly constructing and
+              evaluating merged models. Multi-GPU parallelism helps, and the final speedup is about 1.7x rather than
+              ideal scaling.</p>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h3>Future work</h3>
+          <p>
+            Future experiments could explore cheaper reward proxies, stronger transfer adaptation, larger task groups,
+            and improved scheduling for intermediate reward evaluation. The transfer results suggest that reusable
+            merging policies are promising for related tasks, but target-specific optimization is still important for
+            unrelated domains or larger task groups.
+          </p>
+        </div>
+        <div class="has-text-centered report-actions">
+          <a href="static/pdfs/RL_final.pdf" target="_blank" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Open Full PDF Report</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
     <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project
+                Page Template</a>
+              which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the
+              footer. <br>
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons
+                Attribution-ShareAlike 4.0 International License</a>.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End youtube video -->
+  </footer>
+</body>
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</html>
