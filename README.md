@@ -1,80 +1,71 @@
-# Academic Project Page Template
+# MMCR: Sequential Layer-wise Model Merging via Reinforcement Learning
 
-> **Update (September 2025)**: This template has been modernized with better design, SEO, and mobile support. For the original version, see the [original-version branch](https://github.com/eliahuhorwitz/Academic-project-page-template/tree/original-version).
+This repository hosts the project page for **Final_RL** at National Yang Ming Chiao Tung University.
 
-A clean, responsive template for academic project pages.
+MMCR studies model merging as a sequential reinforcement learning problem. Instead of using one fixed global merging coefficient, the method learns layer-wise coefficients for combining task-specific encoder task vectors.
 
+## Project Page
 
-Example project pages built using this template are:
-- https://horwitz.ai/probex
-- https://vision.huji.ac.il/probegen
-- https://horwitz.ai/mother
-- https://horwitz.ai/spectral_detuning
-- https://vision.huji.ac.il/ladeda
-- https://vision.huji.ac.il/dsire
-- https://horwitz.ai/podd
-- https://dreamix-video-editing.github.io
-- https://horwitz.ai/conffusion
-- https://horwitz.ai/3d_ads/
-- https://vision.huji.ac.il/ssrl_ad
-- https://vision.huji.ac.il/deepsim
+- Website: https://fangfangirl.github.io/RL_final/
+- Source code: https://github.com/Jimmy005452/MMCR
+- Report PDF: [static/pdfs/RL_final.pdf](static/pdfs/RL_final.pdf)
 
+## Authors
 
+Chou Fang Chang, Zi-Yong Lai, and Chih-Pao Lin  
+National Yang Ming Chiao Tung University
 
-## Start using the template
-To start using the template click on `Use this Template`.
+## What This Page Contains
 
-The template uses html for controlling the content and css for controlling the style. 
-To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+The website summarizes the full project directly on the GitHub project page, including:
 
-**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+- Motivation and problem setup for model merging
+- MMCR pipeline and layer-wise MDP formulation
+- State, action, reward, and model selection design
+- GRPO + RLOO policy optimization details
+- Main results across eight vision tasks
+- Runtime and GPU parallelization comparison
+- Ablation studies and final conclusions
 
-## What's New
+## Main Result
 
-- Modern, clean design with better mobile support
-- Improved SEO with proper meta tags and structured data
-- Performance improvements (lazy loading, optimized assets)
-- More Works dropdown
-- Copy button for BibTeX citations
-- Better accessibility
+MMCR reaches **86.41% average accuracy** across eight vision tasks. It slightly outperforms the longer AdaMerging-600 baseline and improves over TIES while using an RL-based layer-wise coefficient search.
 
-## Components
+## Repository Structure
 
-- Teaser video
-- Image carousel
-- YouTube video embedding
-- Video carousel
-- PDF poster viewer
-- BibTeX citation
+```text
+.
++-- index.html              # Main project page
++-- index_2.html            # Alternative lighter layout for comparison
++-- static/
+|   +-- css/                # Page styles
+|   +-- images/             # Icons and image assets
+|   +-- pdfs/RL_final.pdf   # Final report PDF
++-- README.md
+```
 
-## Customization
+## Local Preview
 
-The HTML file has TODO comments showing what to replace:
+Because this is a static website, it can be opened directly in a browser:
 
-- Paper title, authors, institution, conference
-- Links (arXiv, GitHub, etc.)
-- Abstract and descriptions  
-- Videos, images, and PDFs
-- Related works in the dropdown
-- Meta tags for SEO and social sharing
+```text
+index.html
+```
 
-### Meta Tags
-The template includes meta tags for better search engine visibility and social media sharing. These appear in the `<head>` section and help with:
-- Google Scholar indexing
-- Social media previews (Twitter, Facebook, LinkedIn)
-- Search engine optimization
+For a local server preview, run:
 
-Create a 1200x630px social preview image at `static/images/social_preview.png`.
+```bash
+python -m http.server 8000
+```
 
-## Tips
+Then open:
 
-- Compress images with [TinyPNG](https://tinypng.com)
-- Use YouTube for large videos (>10MB)  
-- Replace the favicon in `static/images/`
-- Works with GitHub Pages
+```text
+http://localhost:8000
+```
 
 ## Acknowledgments
-Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
 
-## Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+This page was built using the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template), which was adopted from the [Nerfies](https://nerfies.github.io/) project page.
+
+The website template is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
