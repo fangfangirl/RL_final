@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,7 +55,7 @@
   <link rel="apple-touch-icon" href="static/images/flower.jpg">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/index_2.css">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
 
@@ -272,139 +272,59 @@
 
     <section class="hero is-small is-light" id="method">
       <div class="hero-body">
-        <div class="container is-max-widescreen workflow-container">
+        <div class="container is-max-desktop">
           <h2 class="title is-3">MMCR Pipeline</h2>
-          <div class="workflow-diagram" aria-label="Overall MMCR workflow">
-            <div class="workflow-row workflow-row-four">
-              <article class="workflow-node blue">
-                <span class="workflow-number">1</span>
-                <i class="fas fa-lock"></i>
-                <h3>Shared Pretrained Encoder</h3>
-                <p>CLIP-pretrained ViT-L/14 reference encoder.</p>
-              </article>
-              <span class="workflow-arrow">→</span>
-              <article class="workflow-node purple">
-                <span class="workflow-number">2</span>
-                <i class="fas fa-sitemap"></i>
-                <h3>Task-specific Encoders</h3>
-                <p>Downloaded fine-tuned encoders with trained task heads.</p>
-              </article>
-              <span class="workflow-arrow">→</span>
-              <article class="workflow-node green">
-                <span class="workflow-number">3</span>
-                <i class="fas fa-vector-square"></i>
-                <h3>Task-vector Construction</h3>
-                <p>Compute encoder task vectors from model differences.</p>
-              </article>
-              <span class="workflow-arrow">→</span>
-              <article class="workflow-node orange">
-                <span class="workflow-number">4</span>
-                <i class="fas fa-filter"></i>
-                <h3>TIES Preprocessing</h3>
-                <p>Remove weak updates and reduce sign conflicts before RL search.</p>
-              </article>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>1</span>
+              <h3>Task Vectors</h3>
+              <p>Compute each source update relative to the shared pretrained backbone.</p>
             </div>
-
-            <div class="workflow-down">↓</div>
-
-            <section class="workflow-band teal">
-              <div class="workflow-band-title">
-                <span class="workflow-number">5</span>
-                <h3>Environment Setup</h3>
-              </div>
-              <div class="workflow-row workflow-row-three">
-                <article class="workflow-mini">
-                  <i class="fas fa-project-diagram"></i>
-                  <h4>Precompute Geometry</h4>
-                  <p>Norms, cosine similarity, layer statistics.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-chart-bar"></i>
-                  <h4>Construct Reward Subsets</h4>
-                  <p>64-sample entropy batches per task.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-sync-alt"></i>
-                  <h4>Initialize Layer-wise MDP</h4>
-                  <p>States, actions, rewards, coefficient history.</p>
-                </article>
-              </div>
-            </section>
-
-            <div class="workflow-down">↓</div>
-
-            <section class="workflow-band blue">
-              <div class="workflow-band-title">
-                <span class="workflow-number">6</span>
-                <h3>Sequential Layer-wise Merging Episode</h3>
-              </div>
-              <div class="workflow-row workflow-row-five">
-                <article class="workflow-mini">
-                  <i class="fas fa-list-ul"></i>
-                  <h4>State s<sub>t</sub></h4>
-                  <p> Layer progress, current-layer task-vector geometry, the
-                    full coefficient table, and an updated-layer mask.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-sliders-h"></i>
-                  <h4>Action a<sub>t</sub></h4>
-                  <p>A raw Gaussian action is transformed into non-negative
-                    coefficients for the K source task vectors.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-layer-group"></i>
-                  <h4>Update Layer</h4>
-                  <p>Merge only the current layer.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-level-up-alt"></i>
-                  <h4>Reward r<sub>t</sub></h4>
-                  <p>Negative prediction entropy on small reward subsets,
-                    plus a standard-deviation penalty for task balance.</p>
-                </article>
-                <span class="workflow-arrow">→</span>
-                <article class="workflow-mini">
-                  <i class="fas fa-forward"></i>
-                  <h4>Next State</h4>
-                  <p>Advance until the terminal layer.</p>
-                </article>
-              </div>
-              <p class="workflow-loop">Visit layers sequentially, collect returns, then update the policy.</p>
-            </section>
-
-            <div class="workflow-down">↓</div>
-
-            <div class="workflow-row workflow-row-three">
-              <article class="workflow-node purple">
-                <span class="workflow-number">7</span>
-                <i class="fas fa-brain"></i>
-                <h3>GRPO + RLOO</h3>
-                <p>GRPO updates the policy from groups of full merging trajectories. RLOO uses the other trajectories
-                  as a leave-one-out baseline, so advantages are relative and no critic is needed.</p>
-              </article>
-              <span class="workflow-arrow">→</span>
-              <article class="workflow-node green">
-                <span class="workflow-number">8</span>
-                <i class="fas fa-table"></i>
-                <h3>Selection</h3>
-                <p>The best coefficient table observed during training
-                  constructs the final merged encoder.</p>
-              </article>
-              <span class="workflow-arrow">→</span>
-              <article class="workflow-node orange">
-                <span class="workflow-number">9</span>
-                <i class="fas fa-clipboard-check"></i>
-                <h3>Final Evaluation</h3>
-                <p>Evaluate task heads on full test splits.</p>
-              </article>
+            <div class="pipeline-step">
+              <span>2</span>
+              <h3>TIES Preprocessing</h3>
+              <p>Remove weak updates and reduce sign conflicts before RL search.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>3</span>
+              <h3>Layer-wise MDP</h3>
+              <p>Visit layers sequentially and write one coefficient vector per layer.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>4</span>
+              <h3>GRPO + RLOO</h3>
+              <p>Compare trajectory groups with leave-one-out advantages.</p>
             </div>
           </div>
 
+          <div class="section-divider" role="presentation"></div>
+
+          <div class="method-grid">
+            <div class="method-card">
+              <span class="method-tag">State</span>
+              <h3>What the policy observes</h3>
+              <p>The state is built from layer progress, current-layer task-vector geometry, the full coefficient table,
+                and a mask indicating which layers have already been updated.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Action</span>
+              <h3>What the policy controls</h3>
+              <p>At layer t, the policy samples a raw Gaussian action and transforms it into a non-negative coefficient
+                vector for the K source task vectors.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Reward</span>
+              <h3>What the policy optimizes</h3>
+              <p>The reward is based on negative prediction entropy over small task-specific reward subsets, with a
+                standard-deviation penalty to discourage task imbalance.</p>
+            </div>
+            <div class="method-card">
+              <span class="method-tag">Selection</span>
+              <h3>How the final model is chosen</h3>
+              <p>The best coefficient table observed during training is used to construct the final merged model for
+                full evaluation.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1185,3 +1105,4 @@
 </body>
 
 </html>
+
