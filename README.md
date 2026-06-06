@@ -8,7 +8,7 @@ MMCR studies model merging as a sequential reinforcement learning problem. Inste
 
 - Website: https://fangfangirl.github.io/RL_final/
 - Source code: https://github.com/Jimmy005452/MMCR
-- Report PDF: [static/pdfs/RL_final.pdf](static/pdfs/RL_final.pdf)
+- Report PDF: [[static/pdfs/RL_final.pdf](static/pdfs/RL_final.pdf)](https://fangfangirl.github.io/RL_final/static/pdfs/RL_final.pdf)
 
 ## Authors
 
