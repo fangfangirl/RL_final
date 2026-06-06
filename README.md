@@ -8,7 +8,8 @@ MMCR studies model merging as a sequential reinforcement learning problem. Inste
 
 - Website: https://fangfangirl.github.io/RL_final/
 - Source code: https://github.com/Jimmy005452/MMCR
-- Report PDF: https://fangfangirl.github.io/RL_final/static/pdfs/RL_final.pdf
+- Report PDF: https://fangfangirl.github.io/RL_final/static/pdfs/RL_report.pdf
+- Poster PDF: https://fangfangirl.github.io/RL_final/static/pdfs/RL_poster.pdf
 
 ## Authors
 
@@ -40,7 +41,8 @@ MMCR reaches **86.41% average accuracy** across eight vision tasks. It slightly 
 +-- static/
 |   +-- css/                # Page styles
 |   +-- images/             # Icons and image assets
-|   +-- pdfs/RL_final.pdf   # Final report PDF
+|   +-- pdfs/RL_report.pdf  # Final report PDF
+|   +-- pdfs/RL_poster.pdf  # Project poster PDF
 +-- README.md
 ```
 

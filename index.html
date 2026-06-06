@@ -39,7 +39,7 @@
   <meta name="citation_title" content="MMCR: Sequential Layer-wise Model Merging via Reinforcement Learning">
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="Reinforcement Learning Seminar">
-  <meta name="citation_pdf_url" content="static/pdfs/RL_final.pdf">
+  <meta name="citation_pdf_url" content="static/pdfs/RL_report.pdf">
 
   <meta name="theme-color" content="#2f7d7e">
   <meta name="msapplication-TileColor" content="#2f7d7e">
@@ -161,9 +161,15 @@
               <h1 class="title is-1 publication-title">MMCR</h1>
               <h2 class="subtitle is-4">Sequential Layer-wise Model Merging via Reinforcement Learning</h2>
               <div class="publication-authors is-size-5" aria-label="Project authors">
-                <span class="author-block"><a href="#">Chou Fang Chang</a>,</span>
-                <span class="author-block"><a href="#">Zi-Yong Lai</a>,</span>
-                <span class="author-block"><a href="#">Chih-Pao Lin</a></span>
+                <span class="author-block"><a href="https://github.com/fangfangirl" target="_blank" rel="noopener">Chou
+                    Fang
+                    Chang</a>,</span>
+                <span class="author-block"><a href="https://github.com/Jimmy005452" target="_blank"
+                    rel="noopener">Zi-Yong
+                    Lai</a>,</span>
+                <span class="author-block"><a href="https://github.com/momolin0420" target="_blank"
+                    rel="noopener">Chih-Pao
+                    Lin</a></span>
               </div>
               <div class="publication-affiliation is-size-5">
                 <span>National Yang Ming Chiao Tung University</span>
@@ -194,10 +200,17 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="static/pdfs/RL_final.pdf" target="_blank"
+                  <a href="static/pdfs/RL_report.pdf" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
                     <span>Report</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="static/pdfs/RL_poster.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-image"></i></span>
+                    <span>Poster</span>
                   </a>
                 </span>
               </div>
@@ -233,11 +246,11 @@
             <span class="metric-label">MMCR average accuracy</span>
           </div>
           <div class="metric-card">
-            <span class="metric-value">+4.78</span>
+            <span class="metric-value">+4.78pp</span>
             <span class="metric-label">points over TIES baseline</span>
           </div>
           <div class="metric-card">
-            <span class="metric-value">~1.7x</span>
+            <span class="metric-value">~1.57x</span>
             <span class="metric-label">final two-GPU wall-clock speedup</span>
           </div>
         </div>
@@ -867,7 +880,7 @@
 
           <h3 class="subsection-title">Comparison with model merging Baseline</h3>
           <div class="table-container">
-            <table class="results-table compact descriptive-table">
+            <table class="results-table compact descriptive-table wide-table">
               <thead>
                 <tr>
                   <th>Method</th>
@@ -932,7 +945,7 @@
       <div class="container is-max-desktop">
         <h2 class="title is-3">Runtime and Parallelization</h2>
         <div class="table-container">
-          <table class="results-table compact runtime-table">
+          <table class="results-table compact runtime-table wide-table">
             <thead>
               <tr>
                 <th>Method</th>
@@ -944,6 +957,13 @@
             </thead>
             <tbody>
               <tr>
+                <td>TIES</td>
+                <td>No (CPU)</td>
+                <td>3m 14s</td>
+                <td>3.23</td>
+                <td>81.63</td>
+              </tr>
+              <tr>
                 <td>AdaMerging-300 epochs</td>
                 <td>1 GPU</td>
                 <td>3h 05m 00s</td>
@@ -953,15 +973,22 @@
               <tr>
                 <td>AdaMerging-500 epochs</td>
                 <td>1 GPU</td>
-                <td>5h 56m 27s</td>
-                <td>356.45</td>
+                <td>5h 56m 52s</td>
+                <td>356.87</td>
                 <td>85.81</td>
+              </tr>
+              <tr>
+                <td>AdaMerging-600 epochs</td>
+                <td>1 GPU</td>
+                <td>6h 58m 54s</td>
+                <td>418.90</td>
+                <td>86.36</td>
               </tr>
               <tr>
                 <td>MMCR (ours)</td>
                 <td>1 GPU</td>
-                <td>4h 25m 09s</td>
-                <td>265.15</td>
+                <td>4h 05m 10s</td>
+                <td>245.17</td>
                 <td>86.41</td>
               </tr>
               <tr class="highlight-row">
@@ -975,7 +1002,7 @@
           </table>
         </div>
         <p class="section-note">
-          The final two-GPU MMCR run gives about a 1.7x wall-clock speedup. The gain is useful, while synchronization
+          The final two-GPU MMCR run gives about a 1.57x wall-clock speedup. The gain is useful, while synchronization
           and policy-update overhead prevent perfect scaling.
         </p>
       </div>
@@ -983,7 +1010,7 @@
 
     <section class="hero is-small is-light" id="ablations">
       <div class="hero-body">
-        <div class="container is-max-desktop">
+        <div class="container is-max-widescreen ablation-container">
           <h2 class="title is-3">Ablation Studies</h2>
           <div class="analysis-grid">
             <div class="analysis-card">
@@ -1064,7 +1091,7 @@
                   <td>Competitive but too expensive due to resampling overhead.</td>
                 </tr>
                 <tr>
-                  <td>GSPO-like</td>
+                  <td>GSPO</td>
                   <td>86.32</td>
                   <td>151.18</td>
                   <td>Very close to GRPO, using trajectory-level policy ratios.</td>
@@ -1112,6 +1139,66 @@
               </tbody>
             </table>
           </div>
+
+          <h3 class="subsection-title">Policy transferability</h3>
+          <div class="transfer-findings" aria-label="Policy transferability findings">
+            <div class="transfer-grid">
+              <article class="transfer-case">
+                <h4>Related 2-task</h4>
+                <p class="transfer-route">EuroSAT/SVHN &rarr; RESISC45/MNIST</p>
+                <dl class="transfer-metrics">
+                  <div>
+                    <dt>TIES</dt>
+                    <dd>95.20</dd>
+                  </div>
+                  <div class="emphasis">
+                    <dt>Transferred</dt>
+                    <dd>97.33</dd>
+                  </div>
+                  <div>
+                    <dt>Target</dt>
+                    <dd>97.54</dd>
+                  </div>
+                </dl>
+              </article>
+              <article class="transfer-case">
+                <h4>Related 3-task</h4>
+                <p class="transfer-route">EuroSAT/SVHN/DTD &rarr; RESISC45/MNIST/GTSRB</p>
+                <dl class="transfer-metrics">
+                  <div>
+                    <dt>TIES</dt>
+                    <dd>93.20</dd>
+                  </div>
+                  <div>
+                    <dt>Transferred</dt>
+                    <dd>91.05</dd>
+                  </div>
+                  <div class="emphasis">
+                    <dt>Target</dt>
+                    <dd>96.26</dd>
+                  </div>
+                </dl>
+              </article>
+              <article class="transfer-case">
+                <h4>Unrelated 2-task</h4>
+                <p class="transfer-route">EuroSAT/RESISC45 &rarr; MNIST/SVHN</p>
+                <dl class="transfer-metrics">
+                  <div>
+                    <dt>TIES</dt>
+                    <dd>96.97</dd>
+                  </div>
+                  <div>
+                    <dt>Transferred</dt>
+                    <dd>94.02</dd>
+                  </div>
+                  <div class="emphasis">
+                    <dt>Target</dt>
+                    <dd>97.06</dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1138,8 +1225,8 @@
           <div class="conclusion-card">
             <h3>Main limitation</h3>
             <p>Reward evaluation is still expensive because each trajectory requires repeatedly constructing and
-              evaluating merged models. Multi-GPU parallelism helps, and the final speedup is about 1.7x rather than
-              ideal scaling.</p>
+              evaluating merged models. Multi-GPU parallelism helps, and the final speedup is about 1.57x rather than
+              ideal scaling. Policy transfer also becomes weaker for three-task or unrelated target groups.</p>
           </div>
         </div>
         <div class="detail-block">
@@ -1152,9 +1239,13 @@
           </p>
         </div>
         <div class="has-text-centered report-actions">
-          <a href="static/pdfs/RL_final.pdf" target="_blank" class="button is-normal is-rounded is-dark">
+          <a href="static/pdfs/RL_report.pdf" target="_blank" class="button is-normal is-rounded is-dark">
             <span class="icon"><i class="fas fa-file-pdf"></i></span>
             <span>Open Full PDF Report</span>
+          </a>
+          <a href="static/pdfs/RL_poster.pdf" target="_blank" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="fas fa-image"></i></span>
+            <span>Open Poster</span>
           </a>
         </div>
       </div>
