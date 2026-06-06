@@ -37,7 +37,6 @@ MMCR reaches **86.41% average accuracy** across eight vision tasks. It slightly 
 ```text
 .
 +-- index.html              # Main project page
-+-- index_2.html            # Alternative lighter layout for comparison
 +-- static/
 |   +-- css/                # Page styles
 |   +-- images/             # Icons and image assets
