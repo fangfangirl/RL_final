@@ -1255,6 +1255,14 @@ code {
     right: 1rem;
     top: auto;
   }
+
+  .scroll-to-top {
+    bottom: 5.6rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
   
   .more-works-btn {
     padding: 0.6rem 1rem;
